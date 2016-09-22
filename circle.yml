@@ -3,19 +3,14 @@ machine:
   java:
     version: oraclejdk8
 
-dependencies:
-  cache_directories:
-    - "~/.sbt"
-    - "target/resolution-cache"
-    - "target/streams"
-    - "project/target/resolution-cache"
-    - "project/target/streams"
+#dependencies:
+#  cache_directories:
+#    - "~/.sbt"
+#    - "target/resolution-cache"
+#    - "target/streams"
+#    - "project/target/resolution-cache"
+#    - "project/target/streams"
 
 test:
-  pre:
-    - killall mongod
   override:
     - sbt clean compile test
-  post:
-    - killall mongod
-    - cp agora/target/scala-2.11/agora-0.1-SNAPSHOT.jar ./
