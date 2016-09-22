@@ -13,4 +13,5 @@ machine:
 
 test:
   override:
+    - ps -eF | grep 'mongo\|PID'
     - sbt clean compile test
