@@ -16,7 +16,7 @@ dependencies:
 test:
   override:
     #- ps -eF | grep 'mongo\|PID'  # I guess mongodb starts up when you start ubuntu who knows why
-    - lsof -i:27017 -t | kill 
+    - kill $(lsof -i:27017 -t)
     - sbt clean compile test:
         parallel: false
 
