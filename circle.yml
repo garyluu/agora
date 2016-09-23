@@ -16,10 +16,10 @@ dependencies:
 test:
   override:
     #- ps -eF | grep 'mongo\|PID'  # I guess mongodb starts up when you start ubuntu who knows why
-    - ps -ax | grep mongo
-    - service mongod status
-    - ps -eF | grep 'mongo\|PID'
-    - service mongod stop
+    #- ps -ax | grep mongo
+    #- service mongod status
+    #- ps -eF | grep 'mongo\|PID'
+    - ps aux | grep -i mongo | awk {'print $2'} | xargs kill
     - sbt clean compile test
 
 # todo: docker build step
