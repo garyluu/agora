@@ -12,10 +12,6 @@ dependencies:
     - "target/streams"
     - "project/target/resolution-cache"
     - "project/target/streams"
-  override:
-    - npm install
-    - npm install indexzero/node-portfinder # temporary - update mockgoose when node-portfinder@1.0.3 is out. https://github.com/mccormicka/Mockgoose/issues/196
-    - sudo stop mongodb
 
 test:
   override:
