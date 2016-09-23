@@ -1,4 +1,6 @@
 machine:
+#  services:
+#    - docker
   timezone: UTC
   java:
     version: oraclejdk8
@@ -13,7 +15,8 @@ dependencies:
 
 test:
   override:
-    - ps -eF | grep 'mongo\|PID'  # I guess mongodb starts up when you start ubuntu who knows why
+    #- ps -eF | grep 'mongo\|PID'  # I guess mongodb starts up when you start ubuntu who knows why
+    - lsof -i tcp:27017 | awk 'NR!=1 {print $2}' | xargs kill
     - sbt clean compile test:
         parallel: false
 
