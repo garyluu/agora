@@ -19,8 +19,8 @@ test:
     #- ps -ax | grep mongo
     #- service mongod status
     #- ps -eF | grep 'mongo\|PID'
-    - ps aux | grep -i mongo | awk {'print $2'} | xargs kill -9
-    - ps -ax | grep mongo 
+#    - ps aux | grep -i mongo | awk {'print $2'} | xargs kill -9
+#    - ps -ax | grep mongo
     - sbt clean compile test
 
 # todo: docker build step
