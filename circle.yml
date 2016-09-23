@@ -23,7 +23,7 @@ test:
   override:
     - echo "skipping tests for now because broken" # sbt clean compile test
   post:
-    - docker login -u $DOCKER_USER; $DOCKER_PASSWORD
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
     - chmod +x build/build.sh; build/build.sh
 
 # todo: only deploy on specific branches?
