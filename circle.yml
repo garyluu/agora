@@ -18,6 +18,8 @@ test:
     #- ps -eF | grep 'mongo\|PID'  # I guess mongodb starts up when you start ubuntu who knows why
     - ps -ax | grep mongo
     - service mongod status
-    # - sbt clean compile test
+    - ps -eF | grep 'mongo\|PID'
+    - service mongod stop
+    - sbt clean compile test
 
 # todo: docker build step
