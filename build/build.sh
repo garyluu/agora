@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd build 
+cd build
 
 chmod +x update-dockerfile.sh
 bash update-dockerfile.sh
