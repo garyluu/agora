@@ -15,7 +15,8 @@ dependencies:
 
 test:
   override:
-    # - ps -eF | grep 'mongo\|PID'  # I guess mongodb starts up when you start ubuntu who knows why
-    - sbt clean compile test
+    - ps -eF | grep 'mongo\|PID'  # I guess mongodb starts up when you start ubuntu who knows why
+    - sbt clean compile test:
+        parallel: false
 
 # todo: docker build step
