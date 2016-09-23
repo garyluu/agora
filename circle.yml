@@ -5,9 +5,9 @@ machine:
   services:
     - docker
   environment:
-    - PROJECT: "agora"
-    - ENV: "dev"
-    - REPO: "jacmrob/testbuilds"
+    PROJECT: "agora"
+    ENV: "dev"
+    REPO: "jacmrob/testbuilds"
 
 dependencies:
   cache_directories:
