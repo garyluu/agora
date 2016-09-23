@@ -7,7 +7,7 @@ machine:
   environment:
     PROJECT: "agora"
     ENV: "dev"
-    REPO: "jacmrob/testbuilds"
+    REPO: "jmr18/testbuilds"
 
 dependencies:
   cache_directories:
