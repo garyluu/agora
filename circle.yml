@@ -23,7 +23,7 @@ test:
   override:
     - echo "skipping tests for now because broken" # sbt clean compile test
   post:
-    - build/build.sh
+    - chmod +x build/build.sh; build/build.sh
 
 # todo: only deploy on specific branches?
 # deployment:
