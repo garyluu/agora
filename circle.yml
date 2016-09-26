@@ -21,10 +21,19 @@ dependencies:
 
 test:
   override:
-    - echo "skipping tests for now because broken" # sbt clean compile test
+    - docker run -v .:${PROJECT} --name test broadinstitute/scala-base-image /${PROJECT}/docker/sbt-test.sh
+    # - echo "skipping tests for now because broken" # sbt clean compile test
   post:
-    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - chmod +x build/build.sh; build/build.sh
+    - docker stop test
+    - docker rm test 
 
-# todo: only deploy on specific branches?
-# deployment:
+deployment:
+  all:
+    branch: .*
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - chmod +x build/build.sh; build/build.sh
+#  dev:
+#    branch: dev
+#    commands:
+#      # todo: trigger other build
