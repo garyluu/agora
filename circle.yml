@@ -23,9 +23,6 @@ test:
   override:
     - chmod +x docker/sbt-test.sh
     - docker run -v $(pwd):/${PROJECT} --name test broadinstitute/scala-baseimage /${PROJECT}/docker/sbt-test.sh
-  post:
-    - docker stop test
-    - docker rm -v test
 
 deployment:
   all:
