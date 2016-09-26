@@ -21,11 +21,11 @@ dependencies:
 
 test:
   override:
-    - docker run -v .:${PROJECT} --name test broadinstitute/scala-base-image /${PROJECT}/docker/sbt-test.sh
+    - docker run -v .:/${PROJECT} --name test broadinstitute/scala-base-image /${PROJECT}/docker/sbt-test.sh
     # - echo "skipping tests for now because broken" # sbt clean compile test
   post:
     - docker stop test
-    - docker rm test 
+    - docker rm test
 
 deployment:
   all:
@@ -34,6 +34,6 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
       - chmod +x build/build.sh; build/build.sh
 #  dev:
-#    branch: dev
+#    branch: develop
 #    commands:
 #      # todo: trigger other build
