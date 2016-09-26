@@ -21,7 +21,7 @@ dependencies:
 
 test:
   override:
-    - docker run -v .:/${PROJECT} --name test broadinstitute/scala-base-image /${PROJECT}/docker/sbt-test.sh
+    - docker run -v .:/${PROJECT} --name test broadinstitute/scala-baseimage /${PROJECT}/docker/sbt-test.sh
     # - echo "skipping tests for now because broken" # sbt clean compile test
   post:
     - docker stop test
