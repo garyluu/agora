@@ -8,6 +8,7 @@ machine:
     PROJECT: "agora"
     ENV: "dev"
     REPO: "jmr18/testbuilds"
+    BRANCH: $CIRCLE_BRANCH
 
 dependencies:
   cache_directories:
@@ -29,8 +30,9 @@ deployment:
     branch: .*
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - chmod +x build/build.sh; build/build.sh
-#  dev:
-#    branch: develop
-#    commands:
-#      # todo: trigger other build
+      - chmod +x build/build-images.sh; build/build-images.sh
+  dev:
+    branch: develop
+    commands:
+      - chmod +x build/tag-env.sh; build/tag-env.sh
+      # todo: trigger other build
