@@ -1,5 +1,8 @@
 #!/usr/bin/ruby -w
 
+require "json"
+require "open3"
+
 github_api_url_root = "https://api.github.com/repos/broadinstitute/firecloud-develop"
 
 $branch = ENV.fetch("BRANCH") {|_|
