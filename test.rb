@@ -2,6 +2,11 @@
 
 github_api_url_root = "https://api.github.com/repos/broadinstitute/firecloud-develop"
 
+$branch = ENV.fetch("BRANCH") {|_|
+  STDERR.puts "BRANCH not set."
+  exit 1
+}
+
 def call_github(url, *extra_curl_params)
   curl_cmd = [
       "curl", "-f",

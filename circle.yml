@@ -24,7 +24,7 @@ test:
   override:
     - chmod +x docker/sbt-test.sh
     - docker run -v $(pwd):/${PROJECT} --name test broadinstitute/scala-baseimage /${PROJECT}/docker/sbt-test.sh
-    - ruby test.rb 
+    - ruby test.rb
 
 deployment:
   all:
