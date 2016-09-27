@@ -3,19 +3,19 @@
 require "json"
 require "open3"
 
-$github_token = ENV["GITHUB_TOKEN"]
-if $github_token.nil?
-  begin
-    $github_token = File.read("#{ENV['HOME']}/.github-token").chomp
-  rescue StandardError
-    nil
-  end
-end
-if $github_token.nil?
-  STDERR.puts "Could not find Github token. Tried GITHUB_TOKEN environment variable and " +
-                  "#{ENV['HOME']}/.github-token"
-  exit 1
-end
+# $github_token = ENV["GITHUB_TOKEN"]
+# if $github_token.nil?
+#   begin
+#     $github_token = File.read("#{ENV['HOME']}/.github-token").chomp
+#   rescue StandardError
+#     nil
+#   end
+# end
+# if $github_token.nil?
+#   STDERR.puts "Could not find Github token. Tried GITHUB_TOKEN environment variable and " +
+#                   "#{ENV['HOME']}/.github-token"
+#   exit 1
+# end
 
 $app_name = ENV.fetch("PROJECT") {|_|
   STDERR.puts "PROJECET not set."
@@ -35,7 +35,7 @@ github_api_url_root = "https://api.github.com/repos/broadinstitute/firecloud-dev
 def call_github(url, *extra_curl_params)
   curl_cmd = [
       "curl", "-f",
-      "-H", "Authorization: token #{$github_token}",
+      #"-H", "Authorization: token #{$github_token}",
       *extra_curl_params,
       "#{url}"
   ]

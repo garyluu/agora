@@ -24,6 +24,7 @@ test:
   override:
     - chmod +x docker/sbt-test.sh
     - docker run -v $(pwd):/${PROJECT} --name test broadinstitute/scala-baseimage /${PROJECT}/docker/sbt-test.sh
+    - ruby test.rb 
 
 deployment:
   all:
@@ -35,4 +36,4 @@ deployment:
     branch: develop
     commands:
       - chmod +x build/tag-env.sh; build/tag-env.sh
-      - ruby updatehash.rb
+      - ruby build/updatehash.rb
