@@ -29,10 +29,10 @@ def call_github(url, *extra_curl_params)
   }
 end
 
-url = "#{github_api_url_root}/git/refs/heads/#{$branch}"
+url = "#{github_api_url_root}/git/refs/heads/develop"
 latest_commit_url, latest_commit_sha = call_github(url) {|response|
   o = response["object"]
   [o["url"], o["sha"]]
 }
 
-puts url
+puts latest_commit_url
