@@ -35,4 +35,4 @@ deployment:
     branch: develop
     commands:
       - chmod +x build/tag-env.sh; build/tag-env.sh
-      # todo: trigger other build
+      - ruby updatehash.rb
