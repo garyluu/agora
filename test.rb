@@ -51,6 +51,6 @@ def call_github(url, *extra_curl_params)
   }
 end
 
-resp = call_github(github_api_url_root)
-
-puts resp
+resp = call_github(github_api_url_root) {|response|
+  puts "successfully called github"
+}
