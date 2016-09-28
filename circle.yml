@@ -9,6 +9,7 @@ machine:
     ENV: "dev"
     REPO: "jmr18/testbuilds"
     BRANCH: $CIRCLE_BRANCH
+    GIT_SHA: git rev-parse ${BRANCH}
 
 dependencies:
   cache_directories:
@@ -22,7 +23,7 @@ dependencies:
 
 test:
   override:
-    - ruby test.rb 
+    - ruby test.rb
     - chmod +x docker/sbt-test.sh
     - docker run -v $(pwd):/${PROJECT} --name test broadinstitute/scala-baseimage /${PROJECT}/docker/sbt-test.sh
 

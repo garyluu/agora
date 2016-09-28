@@ -2,7 +2,7 @@
 
 set -eux
 
-GIT_SHA=$(git rev-parse ${BRANCH})
+#GIT_SHA=$(git rev-parse ${BRANCH})
 
 echo "LABEL org.broadinstitute.$PROJECT.git-sha=$GIT_SHA" >> Dockerfile
 
