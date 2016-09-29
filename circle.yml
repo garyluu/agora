@@ -9,7 +9,6 @@ machine:
     ENV: "demo"    # change back to 'env' after demoing
     REPO: "jmr18/testbuilds"
     BRANCH: $CIRCLE_BRANCH
-    GIT_SHA: $(git rev-parse ${BRANCH})
 
 dependencies:
   cache_directories:
@@ -36,11 +35,9 @@ deployment:
     branch: develop
     commands:
       - chmod +x build/tag-env.sh; build/tag-env.sh
-      - ruby build/updatehash.rb
 
   ### Remove after demoing!!!
   demo:
     branch: circleci
     commands:
       - chmod +x build/tag-env.sh; build/tag-env.sh
-      - ruby build/updatehash.rb
