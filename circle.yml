@@ -9,7 +9,7 @@ machine:
     ENV: "demo"    # change back to 'env' after demoing
     REPO: "jmr18/testbuilds"
     BRANCH: $CIRCLE_BRANCH
-    GIT_SHA: git rev-parse ${BRANCH}
+    GIT_SHA: $(git rev-parse ${BRANCH})
 
 dependencies:
   cache_directories:
