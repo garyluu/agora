@@ -7,4 +7,4 @@ docker tag $REPO:${GIT_SHA:0:12} $REPO:$ENV
 docker push $REPO:$ENV
 
 # update hash in submodules
-ruby updatehash.rb
+ruby build/updatehash.rb
