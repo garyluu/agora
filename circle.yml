@@ -26,14 +26,18 @@ test:
     - docker run -v $(pwd):/${PROJECT} --name test broadinstitute/scala-baseimage /${PROJECT}/docker/sbt-test.sh
 
 deployment:
+  # build and push images for all branches
   all:
-    branch: .*
+    branch: /^((?!develop).)*$/
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
       - chmod +x build/build-images.sh; build/build-images.sh
+  # only deploy on the develop branch
   dev:
     branch: develop
     commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - chmod +x build/build-images.sh; build/build-images.sh
       - chmod +x build/tag-env.sh; build/tag-env.sh
 
   ### Remove after demoing!!!
