@@ -2,4 +2,5 @@
 
 set -e
 cd agora
-sbt clean compile test
+sbt test assembly
+cp agora/target/scala-2.11/agora-0.1-SNAPSHOT.jar ./
