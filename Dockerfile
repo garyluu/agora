@@ -1,14 +1,15 @@
 # Production build/deploy/start of DSDE Methods Repository Webservice
 
 # http://github.com/broadinstitute/scala-baseimage
-FROM broadinstitute/scala-baseimage
+#FROM broadinstitute/scala-baseimage
+FROM openjdk:8
 
 # Expose the port used by Agora webservice
 EXPOSE 8000
 
 # Install Agora
 ADD . /agora
-RUN ["/bin/bash", "-c", "/agora/docker/install.sh /agora"]
+#RUN ["/bin/bash", "-c", "/agora/docker/install.sh /agora"]
 
 # Add Agora as a service (it will start when the container starts)
 RUN mkdir /etc/service/agora && \
