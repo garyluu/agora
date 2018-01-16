@@ -104,17 +104,17 @@ class Ga4ghModelTest extends FreeSpec {
         )
 
         val expected = Tool(
-          url = "http://localhost/ga4gh/v1/tools/namespace:name/versions/namespace:name/WDL/descriptor",
+          url = "http://localhost/ga4gh/v2/tools/namespace:name/versions/namespace:name/WDL/descriptor",
           id = "namespace:name",
           organization = ModelSupport.organization,
           toolname = "name",
           toolclass = ToolClass("Workflow","Workflow",""),
           description = "synopsis3",
           author = "Test User <test@company.org>, Test User 2 <test2@company.org>",
-          `meta-version` = "3",
+          meta_version = "3",
           contains = List.empty[String],
           verified = false,
-          `verified-source` = "",
+          verified_source = "",
           signed = false,
           versions = entities.toList map (x => ToolVersion(x))
         )
@@ -142,17 +142,17 @@ class Ga4ghModelTest extends FreeSpec {
         )
 
         val expected = Tool(
-          url = "http://localhost/ga4gh/v1/tools/namespace:name/versions/namespace:name/WDL/descriptor",
+          url = "http://localhost/ga4gh/v2/tools/namespace:name/versions/namespace:name/WDL/descriptor",
           id = "namespace:name",
           organization = ModelSupport.organization,
           toolname = "name",
           toolclass = ToolClass("Workflow","Workflow",""),
           description = "synopsis3",
           author = "",
-          `meta-version` = "3",
+          meta_version = "3",
           contains = List.empty[String],
           verified = false,
-          `verified-source` = "",
+          verified_source = "",
           signed = false,
           versions = entities.toList map (x => ToolVersion(x))
         )
@@ -201,11 +201,11 @@ class Ga4ghModelTest extends FreeSpec {
           url = "",
           id = "namespace:name",
           image = "",
-          `descriptor-type` = List("WDL"),
+          descriptor_type = List("WDL"),
           dockerfile = false,
-          `meta-version` = "3",
+          meta_version = "3",
           verified = false,
-          `verified-source` = "")
+          verified_source = "")
         val actual = ToolVersion(defaultEntity)
         assertResult(expected) { actual }
       }
@@ -228,7 +228,7 @@ class Ga4ghModelTest extends FreeSpec {
         val expected = ToolDescriptor(
           `type` = ToolDescriptorType.WDL,
           descriptor = payload,
-          url = "http://localhost/ga4gh/v1/tools/namespace:name/versions/namespace:name/WDL/descriptor")
+          url = "http://localhost/ga4gh/v2/tools/namespace:name/versions/namespace:name/WDL/descriptor")
         val actual = ToolDescriptor(entity)
         assertResult(expected) { actual }
       }
@@ -240,9 +240,9 @@ class Ga4ghModelTest extends FreeSpec {
       "should create a default Metadata" in {
         val actual = Metadata.apply()
         assertResult(ModelSupport.version) { actual.version }
-        assertResult(ModelSupport.apiVersion) { actual.`api-version` }
+        assertResult(ModelSupport.apiVersion) { actual.api_version }
         assertResult(ModelSupport.country) { actual.country }
-        assertResult(ModelSupport.friendlyName) { actual.`friendly-name`}
+        assertResult(ModelSupport.friendlyName) { actual.friendly_name}
       }
 
     }

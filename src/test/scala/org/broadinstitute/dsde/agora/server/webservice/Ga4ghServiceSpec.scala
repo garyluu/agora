@@ -72,7 +72,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
   "Agora's GA4GH API" - {
 
     "List all tools endpoint" - {
-      val endpoint = "/ga4gh/v1/tools"
+      val endpoint = "/ga4gh/v2/tools"
       s"at $endpoint" - {
         testNonGet(endpoint)
         "should return a list of public Tools" in {
@@ -86,34 +86,34 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
                 url = agoraEntity2.url.get,
                 id = agoraEntity2.namespace.get + ":" + agoraEntity2.name.get,
                 image = "",
-                `descriptor-type` = List("WDL"),
+                descriptor_type = List("WDL"),
                 dockerfile = false,
-                `meta-version` = agoraEntity2.snapshotId.get.toString,
+                meta_version = agoraEntity2.snapshotId.get.toString,
                 verified = false,
-                `verified-source` = ""),
+                verified_source = ""),
               ToolVersion(
                 name = agoraEntity2Snapshot.name.get,
                 url = agoraEntity2Snapshot.url.get,
                 id = agoraEntity2Snapshot.namespace.get + ":" + agoraEntity2Snapshot.name.get,
                 image = "",
-                `descriptor-type` = List("WDL"),
+                descriptor_type = List("WDL"),
                 dockerfile = false,
-                `meta-version` = agoraEntity2Snapshot.snapshotId.get.toString,
+                meta_version = agoraEntity2Snapshot.snapshotId.get.toString,
                 verified = false,
-                `verified-source` = ""))
+                verified_source = ""))
 
             val method1 = Tool(
-              url=AgoraConfig.GA4GH.toolUrl(agoraEntity2.namespace.get + ":" + agoraEntity2.name.get, method1Versions.last.id, method1Versions.last.`descriptor-type`.last),
+              url=AgoraConfig.GA4GH.toolUrl(agoraEntity2.namespace.get + ":" + agoraEntity2.name.get, method1Versions.last.id, method1Versions.last.descriptor_type.last),
               id=agoraEntity2.namespace.get + ":" + agoraEntity2.name.get,
               organization=ModelSupport.organization,
               toolname=agoraEntity2.name.get,
               toolclass=ToolClass("Workflow","Workflow",""),
               description=agoraEntity2.synopsis.get,
               author="",
-              `meta-version`= method1Versions.last.`meta-version`,
+              meta_version= method1Versions.last.meta_version,
               contains=List.empty[String],
               verified=false,
-              `verified-source`="",
+              verified_source="",
               signed=false,
               versions=method1Versions
             )
@@ -124,24 +124,24 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
                 url = agoraEntity3.url.get,
                 id = agoraEntity3.namespace.get + ":" + agoraEntity3.name.get,
                 image = "",
-                `descriptor-type` = List("WDL"),
+                descriptor_type = List("WDL"),
                 dockerfile = false,
-                `meta-version` = agoraEntity3.snapshotId.get.toString,
+                meta_version = agoraEntity3.snapshotId.get.toString,
                 verified = false,
-                `verified-source` = ""))
+                verified_source = ""))
 
             val method2 = Tool(
-              url=AgoraConfig.GA4GH.toolUrl(agoraEntity3.namespace.get + ":" + agoraEntity3.name.get, method2Versions.last.id, method2Versions.last.`descriptor-type`.last),
+              url=AgoraConfig.GA4GH.toolUrl(agoraEntity3.namespace.get + ":" + agoraEntity3.name.get, method2Versions.last.id, method2Versions.last.descriptor_type.last),
               id=agoraEntity3.namespace.get + ":" + agoraEntity3.name.get,
               organization=ModelSupport.organization,
               toolname=agoraEntity3.name.get,
               toolclass=ToolClass("Workflow","Workflow",""),
               description=agoraEntity3.synopsis.get,
               author="",
-              `meta-version` = method2Versions.last.`meta-version`,
+              meta_version = method2Versions.last.meta_version,
               contains=List.empty[String],
               verified=false,
-              `verified-source`="",
+              verified_source="",
               signed=false,
               versions=method2Versions
             )
@@ -155,7 +155,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "Single tool endpoint" - {
-      val endpointTemplate = "/ga4gh/v1/tools/%s:%s"
+      val endpointTemplate = "/ga4gh/v2/tools/%s:%s"
       s"at $endpointTemplate" - {
         commonTests(endpointTemplate, runVersionTests = false, runDescriptorTypeTests = false)
         "should return a public Tool when asked, with associated ToolVersions" in {
@@ -168,35 +168,35 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
               url = agoraEntity2.url.get,
               id = agoraEntity2.namespace.get + ":" + agoraEntity2.name.get,
               image = "",
-              `descriptor-type` = List("WDL"),
+              descriptor_type = List("WDL"),
               dockerfile = false,
-              `meta-version` = agoraEntity2.snapshotId.get.toString,
+              meta_version = agoraEntity2.snapshotId.get.toString,
               verified = false,
-              `verified-source` = "")
+              verified_source = "")
             val secondToolVersion = ToolVersion(
               name = agoraEntity2Snapshot.name.get,
               url = agoraEntity2Snapshot.url.get,
               id = agoraEntity2Snapshot.namespace.get + ":" + agoraEntity2Snapshot.name.get,
               image = "",
-              `descriptor-type` = List("WDL"),
+              descriptor_type = List("WDL"),
               dockerfile = false,
-              `meta-version` = agoraEntity2Snapshot.snapshotId.get.toString,
+              meta_version = agoraEntity2Snapshot.snapshotId.get.toString,
               verified = false,
-              `verified-source` = "")
+              verified_source = "")
             val expectedVersions = List(firstToolVersion, secondToolVersion)
 
             val expected = Tool(
-              url=AgoraConfig.GA4GH.toolUrl(agoraEntity2.namespace.get + ":" + agoraEntity2.name.get, secondToolVersion.id, secondToolVersion.`descriptor-type`.last),
+              url=AgoraConfig.GA4GH.toolUrl(agoraEntity2.namespace.get + ":" + agoraEntity2.name.get, secondToolVersion.id, secondToolVersion.descriptor_type.last),
               id=agoraEntity2.namespace.get + ":" + agoraEntity2.name.get,
               organization=ModelSupport.organization,
               toolname=agoraEntity2.name.get,
               toolclass=ToolClass("Workflow","Workflow",""),
               description=agoraEntity2.synopsis.get,
               author="",
-              `meta-version`=secondToolVersion.`meta-version`,
+              meta_version=secondToolVersion.meta_version,
               contains=List.empty[String],
               verified=false,
-              `verified-source`="",
+              verified_source="",
               signed=false,
               versions=expectedVersions
             )
@@ -208,7 +208,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "List all versions for tool endpoint" - {
-      val endpointTemplate = "/ga4gh/v1/tools/%s:%s/versions"
+      val endpointTemplate = "/ga4gh/v2/tools/%s:%s/versions"
       s"at $endpointTemplate" - {
         commonTests(endpointTemplate, runVersionTests = false, runDescriptorTypeTests = false)
         "should return a list of public ToolVersion when asked" in {
@@ -221,21 +221,21 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
               url = agoraEntity2.url.get,
               id = agoraEntity2.namespace.get + ":" + agoraEntity2.name.get,
               image = "",
-              `descriptor-type` = List("WDL"),
+              descriptor_type = List("WDL"),
               dockerfile = false,
-              `meta-version` = agoraEntity2.snapshotId.get.toString,
+              meta_version = agoraEntity2.snapshotId.get.toString,
               verified = false,
-              `verified-source` = "")
+              verified_source = "")
             val secondToolVersion = ToolVersion(
               name = agoraEntity2Snapshot.name.get,
               url = agoraEntity2Snapshot.url.get,
               id = agoraEntity2Snapshot.namespace.get + ":" + agoraEntity2Snapshot.name.get,
               image = "",
-              `descriptor-type` = List("WDL"),
+              descriptor_type = List("WDL"),
               dockerfile = false,
-              `meta-version` = agoraEntity2Snapshot.snapshotId.get.toString,
+              meta_version = agoraEntity2Snapshot.snapshotId.get.toString,
               verified = false,
-              `verified-source` = "")
+              verified_source = "")
             val expected = Set(firstToolVersion, secondToolVersion)
 
             assertResult(expected) { actual.toSet }
@@ -245,7 +245,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "Single tool version endpoint" - {
-      val endpointTemplate = "/ga4gh/v1/tools/%s:%s/versions/%d"
+      val endpointTemplate = "/ga4gh/v2/tools/%s:%s/versions/%d"
       s"at $endpointTemplate" - {
         commonTests(endpointTemplate, runDescriptorTypeTests = false)
         "should return a ToolVersion when asked for a public snapshot" in {
@@ -256,11 +256,11 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
               url = agoraEntity2.url.get,
               id = agoraEntity2.namespace.get + ":" + agoraEntity2.name.get,
               image = "",
-              `descriptor-type` = List("WDL"),
+              descriptor_type = List("WDL"),
               dockerfile = false,
-              `meta-version` = agoraEntity2.snapshotId.get.toString,
+              meta_version = agoraEntity2.snapshotId.get.toString,
               verified = false,
-              `verified-source` = "")
+              verified_source = "")
             assertResult(expected) { responseAs[ToolVersion] }
           }
         }
@@ -268,7 +268,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "Single tool version descriptor endpoint" - {
-      val endpointTemplate = "/ga4gh/v1/tools/%s:%s/versions/%d/%s/descriptor"
+      val endpointTemplate = "/ga4gh/v2/tools/%s:%s/versions/%d/%s/descriptor"
       s"at $endpointTemplate" - {
         commonTests(endpointTemplate)
         "should return WDL plus metadata when asked for WDL of a public snapshot" in {
@@ -279,8 +279,8 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
             assert(td.descriptor == testIntegrationEntity2.payload.get)
           }
         }
-        "should return WDL only when asked for plain-WDL of a public snapshot" in {
-          Get(fromTemplate(endpointTemplate, descriptorType = "plain-WDL")) ~> testRoutes ~> check {
+        "should return WDL only when asked for PLAIN_WDL of a public snapshot" in {
+          Get(fromTemplate(endpointTemplate, descriptorType = "PLAIN_WDL")) ~> testRoutes ~> check {
             assert(status == OK)
             val td = responseAs[String]
             assert(td == testIntegrationEntity2.payload.get)
@@ -290,7 +290,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "Unsupported/undocumented relative-path endpoint" - {
-      val endpointTemplate = "/ga4gh/v1/tools/%s:%s/versions/%d/%s/descriptor/relative-path"
+      val endpointTemplate = "/ga4gh/v2/tools/%s:%s/versions/%d/%s/descriptor/relative-path"
       s"at $endpointTemplate" - {
         testNonGet(fromTemplate(endpointTemplate))
         "should return NotImplemented when called" in {
@@ -302,7 +302,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "Unsupported/undocumented tests endpoint" - {
-      val endpointTemplate = "/ga4gh/v1/tools/%s:%s/versions/%d/$s/tests"
+      val endpointTemplate = "/ga4gh/v2/tools/%s:%s/versions/%d/$s/tests"
       s"at $endpointTemplate" - {
         testNonGet(fromTemplate(endpointTemplate))
         "should return NotImplemented when called" in {
@@ -314,7 +314,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "Unsupported/undocumented single tool version dockerfile endpoint" - {
-      val endpointTemplate = "/ga4gh/v1/tools/%s:%s/versions/%d/dockerfile"
+      val endpointTemplate = "/ga4gh/v2/tools/%s:%s/versions/%d/dockerfile"
       s"at $endpointTemplate" - {
         testNonGet(fromTemplate(endpointTemplate))
         "should return NotImplemented when called" in {
@@ -326,7 +326,7 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
     }
 
     "Metadata endpoint" - {
-      val endpoint = "/ga4gh/v1/metadata"
+      val endpoint = "/ga4gh/v2/metadata"
       s"at $endpoint" - {
         testNonGet(endpoint)
         "should return expected metadata" in {
@@ -334,9 +334,9 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
             """
               |{
               |  "version": "1.0.0",
-              |  "api-version": "1.0.0",
+              |  "api_version": "1.0.0",
               |  "country": "USA",
-              |  "friendly-name": "FireCloud"
+              |  "friendly_name": "FireCloud"
               |}
             """.stripMargin.parseJson
           Get(endpoint) ~> testRoutes ~> check {
@@ -349,8 +349,8 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
       }
     }
 
-    "Tool-classes endpoint" - {
-      val endpoint = "/ga4gh/v1/tool-classes"
+    "ToolClasses endpoint" - {
+      val endpoint = "/ga4gh/v2/toolClasses"
       s"at $endpoint" - {
         testNonGet(endpoint)
         "should return expected tool classes" in {
@@ -443,8 +443,8 @@ class Ga4ghServiceSpec extends ApiServiceSpec with FreeSpecLike with RouteTest w
         assert(status == BadRequest)
       }
     }
-    "should return BadRequest when asked for plain-CWL" in {
-      val mungedUrl = endpoint.replace("WDL", "plain-CWL")
+    "should return BadRequest when asked for PLAIN_CWL" in {
+      val mungedUrl = endpoint.replace("WDL", "PLAIN_CWL")
       Get(mungedUrl) ~> testRoutes ~> check {
         assert(status == BadRequest)
       }

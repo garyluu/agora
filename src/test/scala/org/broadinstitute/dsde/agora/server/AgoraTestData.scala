@@ -32,7 +32,7 @@ object AgoraTestData {
   val synopsis3 = Option("This is a test configuration")
   val documentation1 = Option("This is the documentation")
   val documentation2 = Option("This is documentation for another method")
-  val testGA4GHpath = "/ga4gh/v1/tools/test_ns:test_wdl/versions/1/WDL/descriptor"
+  val testGA4GHpath = "/ga4gh/v2/tools/test_ns:test_wdl/versions/1/WDL/descriptor"
   val mockServerPort = 8001
 
   val badNamespace = Option("    ")

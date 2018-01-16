@@ -20,14 +20,14 @@ abstract class Ga4ghService(permissionsDataSource: PermissionsDataSource)
   def queryHandler = Props(classOf[Ga4ghQueryHandler], permissionsDataSource, executionContext)
 
   def routes =
-    pathPrefix("ga4gh" / "v1") {
+    pathPrefix("ga4gh" / "v2") {
       get {
         path("metadata") {
           respondWithMediaType(MediaTypes.`application/json`) {
             complete(StatusCodes.OK, Metadata())
           }
         } ~
-        path("tool-classes") {
+        path("toolClasses") {
           val toolClassesResponse:Seq[ToolClass] = Seq(ToolClass.apply(Some(AgoraEntityType.Workflow)))
           complete(toolClassesResponse)
         } ~

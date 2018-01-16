@@ -26,7 +26,7 @@ trait Ga4ghServiceSupport {
 
   def parseDescriptorType(descriptorType:String): DescriptorType = {
     if (descriptorType != ToolDescriptorType.WDL.toString && descriptorType != ToolDescriptorType.PLAIN_WDL.toString)
-      throw ValidationException(s"This service only supports WDL and plain-WDL. Found: $descriptorType")
+      throw ValidationException(s"This service only supports WDL and PLAIN_WDL. Found: $descriptorType")
     ToolDescriptorType.withName(descriptorType)
   }
 

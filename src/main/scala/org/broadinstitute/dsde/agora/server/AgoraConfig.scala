@@ -41,7 +41,7 @@ object AgoraConfig {
   private lazy val scheme = config.as[Option[String]]("webservice.scheme").getOrElse("http")
   lazy val host = config.as[Option[String]]("webservice.host").getOrElse("localhost")
   lazy val port = config.as[Option[Int]]("webservice.port").getOrElse(8000)
-  lazy val version = config.as[Option[String]]("webservice.version").getOrElse("v1")
+  lazy val version = config.as[Option[String]]("webservice.version").getOrElse("v2")
   lazy val methodsRoute = config.as[Option[String]]("methods.route").getOrElse("methods")
   lazy val methodsUrl = baseUrl + methodsRoute + "/"
   lazy val configurationsRoute = config.as[Option[String]]("configurations.route").getOrElse("configurations")

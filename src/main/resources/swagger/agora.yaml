@@ -1323,7 +1323,7 @@ paths:
             type: object
             $ref: '#/definitions/Error'
 
-  /ga4gh/v1/tools/{id}:
+  /ga4gh/v2/tools/{id}:
     get:
       summary: List one specific tool, acts as an anchor for self references
       description: This endpoint returns one specific tool (which has ToolVersions nested inside it)
@@ -1342,7 +1342,7 @@ paths:
               $ref: '#/definitions/Tool'
       security: []
 
-  /ga4gh/v1/tools/{id}/versions:
+  /ga4gh/v2/tools/{id}/versions:
     get:
       summary: List versions of a tool
       description: Returns all versions of the specified tool
@@ -1363,7 +1363,7 @@ paths:
               $ref: '#/definitions/ToolVersion'
       security: []
 
-  /ga4gh/v1/tools/{id}/versions/{version-id}:
+  /ga4gh/v2/tools/{id}/versions/{version-id}:
     get:
       summary: List one specific tool version, acts as an anchor for self references
       description: This endpoint returns one specific tool version
@@ -1387,7 +1387,7 @@ paths:
               $ref: '#/definitions/ToolVersion'
       security: []
 
-  /ga4gh/v1/tools:
+  /ga4gh/v2/tools:
     get:
       summary: List all tools
       description: >
@@ -1403,7 +1403,7 @@ paths:
               $ref: '#/definitions/Tool'
       security: []
 
-  /ga4gh/v1/tools/{id}/versions/{version-id}/{type}/descriptor:
+  /ga4gh/v2/tools/{id}/versions/{version-id}/{type}/descriptor:
     get:
       summary: Get the tool descriptor (WDL) for the specified tool.
       description: Returns the WDL descriptor for the specified tool.
@@ -1418,11 +1418,11 @@ paths:
             implementation to determine which output type to return. Plain types return the
             bare descriptor while the "non-plain" types return a descriptor wrapped
             with metadata. Choose "Response Content Type: application/json" for WDL and
-            "Response Content Type: text/plain" for plain-WDL
+            "Response Content Type: text/plain" for PLAIN_WDL
           type: string
           enum:
             - WDL
-            - plain-WDL
+            - PLAIN_WDL
         - name: id
           in: path
           description: >
@@ -1454,7 +1454,7 @@ paths:
             $ref: '#/definitions/Error'
       security: []
 
-  /ga4gh/v1/metadata:
+  /ga4gh/v2/metadata:
     get:
       summary: Return some metadata that is useful for describing this registry
       description: Return some metadata that is useful for describing this registry
@@ -1467,7 +1467,7 @@ paths:
               $ref: '#/definitions/Metadata'
       security: []
 
-  /ga4gh/v1/tool-classes:
+  /ga4gh/v2/toolClasses:
     get:
       summary: List all tool types
       description: >
@@ -1994,18 +1994,18 @@ definitions:
     description: Describes this registry to better allow for mirroring and indexing.
     required:
       - version
-      - api-version
+      - api_version
     properties:
       version:
         type: string
         description: The version of this registry
-      api-version:
+      api_version:
         type: string
         description: The version of the GA4GH tool-registry API supported by this registry
       country:
         type: string
         description: A country code for the registry (ISO 3166-1 alpha-3)
-      friendly-name:
+      friendly_name:
         type: string
         description: A friendly name that can be used in addition to the hostname to describe a registry
 

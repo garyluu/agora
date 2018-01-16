@@ -42,7 +42,7 @@ object ModelSupport {
     val versions = entities.toList map (x => toolVersionFromEntity(x))
     val latestVersion = versions.last
     val id = ToolId(representative).toString
-    val url = AgoraConfig.GA4GH.toolUrl(id, latestVersion.id, latestVersion.`descriptor-type`.last)
+    val url = AgoraConfig.GA4GH.toolUrl(id, latestVersion.id, latestVersion.descriptor_type.last)
     val wdl = representative.payload match {
       case x if x.isDefined =>
         WdlNamespaceWithWorkflow.load(x.get, Seq.empty) match {
@@ -59,10 +59,10 @@ object ModelSupport {
       toolclass=ToolClass(representative),
       description=representative.synopsis.getOrElse(""),
       author=findAuthorsInWdl(wdl),
-      `meta-version` = latestVersion.`meta-version`,
+      meta_version = latestVersion.meta_version,
       contains=List.empty[String],
       verified=false,
-      `verified-source`= verifiedSource,
+      verified_source= verifiedSource,
       signed=false,
       versions=versions
     )
@@ -76,11 +76,11 @@ object ModelSupport {
       url = entity.url.getOrElse(""),
       id = ToolId(entity).toString,
       image = "",
-      `descriptor-type` = List("WDL"),
+      descriptor_type = List("WDL"),
       dockerfile = false,
-      `meta-version` = entity.snapshotId.getOrElse(Int.MinValue).toString,
+      meta_version = entity.snapshotId.getOrElse(Int.MinValue).toString,
       verified = false,
-      `verified-source` = verifiedSource
+      verified_source = verifiedSource
     )
   }
 
@@ -90,7 +90,7 @@ object ModelSupport {
     ToolDescriptor(
       `type` = ToolDescriptorType.WDL,
       descriptor = entity.payload.getOrElse(""),
-      url = AgoraConfig.GA4GH.toolUrl(id, version.id, version.`descriptor-type`.last)
+      url = AgoraConfig.GA4GH.toolUrl(id, version.id, version.descriptor_type.last)
     )
   }
 
@@ -98,7 +98,7 @@ object ModelSupport {
     * Metadata is always a constant.
     */
   def metadata(): Metadata = {
-    Metadata(version = version, `api-version` = apiVersion, country = country, `friendly-name` = friendlyName)
+    Metadata(version = version, api_version = apiVersion, country = country, friendly_name = friendlyName)
   }
 
   /**

@@ -33,10 +33,10 @@ object Models {
     toolclass: ToolClass,
     description: String,
     author: String,
-    `meta-version`: String,
+    meta_version: String,
     contains: List[String],
     verified: Boolean,
-    `verified-source`: String,
+    verified_source: String,
     signed: Boolean,
     versions: List[ToolVersion])
   object Tool {
@@ -49,11 +49,11 @@ object Models {
     url: String,
     id: String,
     image: String,
-    `descriptor-type`: List[String],
+    descriptor_type: List[String],
     dockerfile: Boolean,
-    `meta-version`: String,
+    meta_version: String,
     verified: Boolean,
-    `verified-source`: String)
+    verified_source: String)
   object ToolVersion{
     def apply(entity: AgoraEntity): ToolVersion = ModelSupport.toolVersionFromEntity(entity)
   }
@@ -66,17 +66,17 @@ object Models {
   object ToolDescriptorType extends Enumeration {
     type DescriptorType = Value
     val WDL: ToolDescriptorType.Value = Value("WDL")
-    val PLAIN_WDL: ToolDescriptorType.Value = Value("plain-WDL")
+    val PLAIN_WDL: ToolDescriptorType.Value = Value("PLAIN_WDL")
     val CWL: ToolDescriptorType.Value = Value("CWL")
-    val PLAIN_CWL: ToolDescriptorType.Value = Value("plain-CWL")
+    val PLAIN_CWL: ToolDescriptorType.Value = Value("PLAIN_CWL")
   }
 
   // Verified against ga4gh swagger spec
   case class Metadata(
     version: String,
-    `api-version`: String,
+    api_version: String,
     country: String,
-    `friendly-name`: String)
+    friendly_name: String)
   object Metadata {
     def apply(): Metadata = ModelSupport.metadata()
   }
